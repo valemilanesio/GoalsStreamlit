@@ -12,9 +12,9 @@ Código desarrollado en Python y desplegado en aplicación web mediante Streamli
      ```
 
 2. **Moverse al repositorio**
-    - ```bash
-     cd GoalsStreamlit
-     ```
+    ```bash
+    cd GoalsStreamlit
+    ```
 
 3. **Crear entorno virtual**
    - Para crear un entorno virtual, ejecuta el siguiente comando en la terminal:
