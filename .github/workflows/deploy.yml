@@ -22,7 +22,13 @@ jobs:
 
     - name: Notify on Discord
       uses: Ilshidur/action-discord@master
-      env:
-        DISCORD_WEBHOOK: ${{ secrets.DISCORD_WEBHOOK }}
       with:
-        args: "🚀 Nuevo commit en la rama `${{ github.ref_name }}` por ${{ github.actor }}: ${{ github.event.head_commit.message }}"
+        webhook: ${{ secrets.DISCORD_WEBHOOK }}
+        message: "🚀 FastAPI desplegado en servidor local tras merge en develop."
+
+    # - name: Notify on Discord
+    #   uses: Ilshidur/action-discord@master
+    #   env:
+    #     DISCORD_WEBHOOK: ${{ secrets.DISCORD_WEBHOOK }}
+    #   with:
+    #     args: "🚀 Nuevo commit en la rama `${{ github.ref_name }}` por ${{ github.actor }}: ${{ github.event.head_commit.message }}"
