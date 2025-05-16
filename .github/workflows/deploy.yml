@@ -18,7 +18,7 @@ jobs:
       run: docker compose down || true
 
     - name: Build and run new container
-      run: docker compose up -d --build
+      run: docker compose up app/ -d --build
 
     # - name: Notify on Discord
     #   uses: Ilshidur/action-discord@master
