@@ -48,7 +48,7 @@ def main():
     datos = {jugador: cargar_datos(jugador) for jugador in jugadores}
     
     st.sidebar.header("Filtros")
-    jugador_seleccionado = st.sidebar.selectbox("Selecciona un jugador", jugadores, format_func=lambda x: x.capitalize())
+    jugador_seleccionado = st.sidebar.selectbox("Selecciona un player", jugadores, format_func=lambda x: x.capitalize())
     club_seleccionado = st.sidebar.selectbox("Selecciona un club", ["Todos"] + list(datos[jugador_seleccionado]["Club"].unique()))
     rival_seleccionado = st.sidebar.selectbox("Selecciona un rival", ["Todos"] + list(datos[jugador_seleccionado]["Opponent"].unique()))
     
