@@ -1,5 +1,4 @@
 name: Despliegue de Servidor Streamlit
-working-directory: ./app
 
 on:
   push:
@@ -19,6 +18,7 @@ jobs:
       run: docker compose down || true
 
     - name: Build and run new container
+      working-directory: ./app
       run: docker compose up -d --build
 
     # - name: Notify on Discord
