@@ -19,16 +19,16 @@ Código desarrollado en Python y desplegado en aplicación web mediante Streamli
 3. **Crear entorno virtual**
    - Para crear un entorno virtual, ejecuta el siguiente comando en la terminal:
      ```bash
-     python3 -m venv GoalsStreamlit
+     python3 -m venv venv
      ```
    - Activar el entorno virtual:
      - En Linux/macOS:
        ```bash
-       source GoalsStreamlit/bin/activate
+       source venv/bin/activate
        ```
      - En Windows:
        ```bash
-       GoalsStreamlit\Scripts\activate
+       venv\Scripts\activate
        ```
    - Desactivar el entorno virtual:
      ```bash
