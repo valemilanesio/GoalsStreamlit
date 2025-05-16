@@ -1,18 +1,28 @@
-name: Notify on Any Push
+name: Despliegue de Servidor Streamlit
 
 on:
-  push:  # Escucha cualquier push en cualquier rama
+  push:
     branches:
-      - '**'
+      - main
 
 jobs:
-  notify:
-    runs-on: ubuntu-latest
+  deploy:
+    name: Deploy on local server
+    runs-on: self-hosted
 
     steps:
-      - name: Notify on Discord
-        uses: Ilshidur/action-discord@master
-        env:
-          DISCORD_WEBHOOK: ${{ secrets.DISCORD_WEBHOOK }}
-        with:
-          args: "🚀 Nuevo commit en la rama `${{ github.ref_name }}` por ${{ github.actor }}: ${{ github.event.head_commit.message }}"
+    - name: Checkout code
+      uses: actions/checkout@v3
+
+    - name: Stop existing container
+      run: docker compose down || true
+
+    - name: Build and run new container
+      run: docker compose up -d --build
+
+    - name: Notify on Discord
+      uses: Ilshidur/action-discord@master
+      env:
+        DISCORD_WEBHOOK: ${{ secrets.DISCORD_WEBHOOK }}
+      with:
+        args: "🚀 Nuevo commit en la rama `${{ github.ref_name }}` por ${{ github.actor }}: ${{ github.event.head_commit.message }}"
