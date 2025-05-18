@@ -1,14 +1,13 @@
-name: Notify on Any Push
+name: Deploy on main push
 
 on:
-  push:  # Escucha cualquier push en cualquier rama
+  push:
     branches:
-      - '**'
+      - main  # Solo en la rama main
 
 jobs:
   notify:
     runs-on: ubuntu-latest
-
     steps:
       - name: Notify on Discord
         uses: Ilshidur/action-discord@master
@@ -16,3 +15,15 @@ jobs:
           DISCORD_WEBHOOK: ${{ secrets.DISCORD_WEBHOOK }}
         with:
           args: "🚀 Nuevo commit en la rama `${{ github.ref_name }}` por ${{ github.actor }}: ${{ github.event.head_commit.message }}"
+
+  deploy:
+    runs-on: self-hosted  # Esto usa tu PC como runner
+    steps:
+      - name: Checkout code
+        uses: actions/checkout@v3
+
+      - name: Build and run Docker container
+        run: |
+          cd docker
+          docker compose down
+          docker compose up --build -d
