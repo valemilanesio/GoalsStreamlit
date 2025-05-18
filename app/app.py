@@ -3,12 +3,15 @@ import pandas as pd
 import plotly.express as px
 import os
 
+BASE_DIR = os.path.abspath(os.path.join(os.path.dirname(__file__), ".."))
+
 def cargar_datos(jugador):
-    return pd.read_csv(f"datasets/{jugador}.csv")
+    path = os.path.join(BASE_DIR, "datasets", f"{jugador}.csv")
+    return pd.read_csv(path)
 
 def set_background(jugador):
-    jpg_path = f"images/{jugador}.jpg"
-    webp_path = f"images/{jugador}.webp"
+    jpg_path = os.path.join(BASE_DIR, "images", f"{jugador}.jpg")
+    webp_path = os.path.join(BASE_DIR, "images", f"{jugador}.webp")
     imagen_path = jpg_path if os.path.exists(jpg_path) else webp_path if os.path.exists(webp_path) else None
     
     if imagen_path:
